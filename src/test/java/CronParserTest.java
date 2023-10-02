@@ -1,10 +1,8 @@
-import org.example.CronField;
 import org.example.CronParser;
 import org.example.IllegalCronFieldException;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
-import testcases.CronFieldInValidTestCases;
-import testcases.CronFieldValidTestCases;
+import testcases.CronParserInValidTestCases;
 import testcases.CronParserValidTestCases;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -20,11 +18,11 @@ public class CronParserTest {
     }
 
     @ParameterizedTest
-    @EnumSource(CronFieldInValidTestCases.class)
-    public void testInValidCronField(CronFieldInValidTestCases testCases) {
+    @EnumSource(CronParserInValidTestCases.class)
+    public void testInValidCronField(CronParserInValidTestCases testCase) {
         assertThrows(IllegalCronFieldException.class, () -> {
-            CronField cronField = new CronField(testCases.input, testCases.type);
-            cronField.toString();
+            CronParser cronParser = new CronParser(testCase.input);
+            cronParser.toString();
         });
     }
 }
